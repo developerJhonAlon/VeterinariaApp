@@ -1,0 +1,45 @@
+﻿<!-- un modelo que usara en la vista en esta caso una lista de mascotas -->
+@model List<MvcNetFramework2.Models.Mascota>
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- url.action(action,controlador) -->
+<h2>
+    <a href="@Url.Action("Nuevo","Mascota")" class="btn btn-success" style="float:right">Nuevo</a>
+    Listado de Mascotas
+</h2>
+<hr />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Edad</th>
+            <th>Nombre del dueño</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Por cada modelo(Mascota) pintar una fila, Model es una variable ligada al modelo definido en la primer linea como model -->
+        @foreach (var mascota in Model)
+        {
+            <tr>
+                <td>@mascota.Id</td>
+                <td>@mascota.Nombre</td>
+                <td>@mascota.Raza</td>
+                <td>@mascota.Edad</td>
+                <td>@mascota.NombreDueno</td>
+                <td>
+                    <!-- url.action(action,controlador,parametros) -->
+                    <a href="@Url.Action("Actualizar","Mascota", new { id = mascota.Id })" class="btn btn-primary">Actualizar</a>
+                    <a href="@Url.Action("Eliminar","Mascota", new { id = mascota.Id})" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
